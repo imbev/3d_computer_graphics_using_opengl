@@ -5,9 +5,13 @@ void me_gl_window_init_gl()
     glewInit();
 
     GLfloat verts[] = {
-        +0.0f, +1.0f, //
+        +0.0f, +0.0f, //
+        +1.0f, +1.0f, //
+        -1.0f, +1.0f, //
+        //
+        +0.0f, +0.0f, //
         -1.0f, -1.0f, //
-        +1.0f, -1.0f, //
+        +1.0f, -1.0f  //
     };
 
     GLuint myBufferID;
@@ -27,5 +31,5 @@ void me_gl_window_paint_gl(GLFWwindow *window)
     glfwGetFramebufferSize(window, &width, &height);
 
     glViewport(0, 0, width, height);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
 }

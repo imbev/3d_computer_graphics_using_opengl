@@ -12,4 +12,5 @@ Licensed under the 3-Clause BSD License
 
 ## Progress
 - OpenGL Hello World Triangle
+- OpenGL Two Triangles
 
