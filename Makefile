@@ -11,13 +11,16 @@ OBJ = \
 	vendor/lib/libGLEW.a \
 	vendor/lib/libglfw3.a \
 	src/me_gl_window.o
+headers = \
+	include/me_gl_window.h \
+	include/me_shader_code.h
 
 GLEW_VERSION = 2.2.0
 GLFW_VERSION = 3.4
 
 .PHONY: clean clean-vendor
 
-main: main.c $(OBJ)
+main: main.c $(OBJ) $(headers)
 
 src/me_gl_window.o: src/me_gl_window.c
 
