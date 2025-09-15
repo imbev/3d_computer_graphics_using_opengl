@@ -75,6 +75,5 @@ void me_gl_window_paint_gl(GLFWwindow *window)
     glfwGetFramebufferSize(window, &width, &height);
 
     glViewport(0, 0, width, height);
-    // glDrawArrays(GL_TRIANGLES, 0, 6);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, 0);
 }

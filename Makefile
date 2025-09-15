@@ -22,7 +22,7 @@ GLFW_VERSION = 3.4
 
 main: main.c $(OBJ) $(headers)
 
-src/me_gl_window.o: src/me_gl_window.c
+src/me_gl_window.o: src/me_gl_window.c $(headers)
 
 vendor/glew-$(GLEW_VERSION).zip:
 	mkdir -p vendor

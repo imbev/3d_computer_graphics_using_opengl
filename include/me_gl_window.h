@@ -6,6 +6,6 @@
 
 void me_gl_window_init_gl();
 
-void me_gl_window_paint_gl();
+void me_gl_window_paint_gl(GLFWwindow *window);
 
 #endif

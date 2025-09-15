@@ -1,4 +1,6 @@
+/.cache
 /.vscode
 /src/*.o
 /vendor
+/compile_commands.json
 /main
