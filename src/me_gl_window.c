@@ -1,5 +1,8 @@
 #include <me_gl_window.h>
 #include <me_shader_code.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 void send_data_to_opengl()
 {
@@ -31,12 +34,32 @@ void send_data_to_opengl()
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 }
 
+bool check_shader_status(GLuint shader_id) {
+    GLint compile_status;
+    glGetShaderiv(shader_id, GL_COMPILE_STATUS, &compile_status);
+    if (compile_status != GL_TRUE) {
+        GLint info_log_length;
+        glGetShaderiv(shader_id, GL_INFO_LOG_LENGTH, &info_log_length);
+        GLchar *buffer = malloc(sizeof(GLchar) * info_log_length);
+
+        GLsizei buffer_size;
+        glGetShaderInfoLog(shader_id, info_log_length, &buffer_size, buffer);
+        printf("%s\n", buffer);
+
+        free(buffer);
+
+        return false;
+    }
+
+    return true;
+}
+
 void install_shaders()
 {
     GLuint vertex_shader_id = glCreateShader(GL_VERTEX_SHADER);
     GLuint fragment_shader_id = glCreateShader(GL_FRAGMENT_SHADER);
 
-    const char *adapter[1];
+    const GLchar *adapter[1];
 
     adapter[0] = vertex_shader_code;
     glShaderSource(vertex_shader_id, 1, adapter, 0);
@@ -46,6 +69,10 @@ void install_shaders()
 
     glCompileShader(vertex_shader_id);
     glCompileShader(fragment_shader_id);
+
+    if (!check_shader_status(vertex_shader_id) || !check_shader_status(fragment_shader_id)) {
+        return;
+    }
 
     GLuint program_id = glCreateProgram();
     glAttachShader(program_id, vertex_shader_id);
