@@ -6,11 +6,18 @@
 void send_data_to_opengl()
 {
     GLfloat verts[] = {
-        +0.0f, +1.0f,        // 2
+        +0.0f, +1.0f,        //
         +1.0f, +0.0f, +0.0f, //
-        -1.0f, -1.0f,        // 3
-        +0.0f, +1.0f, +0.0f, //
-        +1.0f, -1.0f,        // 4
+        -1.0f, -1.0f,        //
+        +1.0f, +0.0f, +0.0f, //
+        +1.0f, -1.0f,        //
+        +1.0f, +0.0f, +0.0f, //
+
+        -1.0f, +1.0f,        //
+        +0.0f, +0.0f, +1.0f, //
+        +0.0f, -1.0f,        //
+        +0.0f, +0.0f, +1.0f, //
+        +1.0f, +1.0f,        //
         +0.0f, +0.0f, +1.0f, //
     };
 
@@ -25,7 +32,7 @@ void send_data_to_opengl()
 
     GLushort indices[] = {
         0, 1, 2, //
-        0, 3, 4  //
+        3, 4, 5, //
     };
     GLuint indexBufferId;
     glGenBuffers(1, &indexBufferId);

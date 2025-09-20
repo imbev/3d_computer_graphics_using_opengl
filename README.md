@@ -21,3 +21,4 @@ Licensed under the 3-Clause BSD License
 - Get GLSL Compiler Error
 - GLSL Linker Errors
 - OpenGL Writing GLSL Shaders in Text Files vs String Literals
+- OpenGL Fragment vs Pixel
