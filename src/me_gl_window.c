@@ -1,5 +1,4 @@
 #include <me_gl_window.h>
-#include <me_shader_code.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -76,6 +75,29 @@ bool check_program_status(GLuint program_id) {
     return true;
 }
 
+char *read_shader_code(const char *file_name) {
+    FILE *file = fopen(file_name, "r");
+    if (file == NULL) {
+        printf("Failed to open file: %s\n", file_name);
+        exit(1);
+    }
+
+    fseek(file, 0L, SEEK_END);
+    long file_size = ftell(file);
+    fseek(file, 0L, SEEK_SET);
+
+    char *buffer = malloc(file_size);
+    if (buffer == NULL) {
+        printf("Failed to load file: %s\n", file_name);
+        exit(1);
+    }
+    fread(buffer, sizeof(char), file_size, file);
+
+    fclose(file);
+
+    return buffer;
+}
+
 void install_shaders()
 {
     GLuint vertex_shader_id = glCreateShader(GL_VERTEX_SHADER);
@@ -83,11 +105,13 @@ void install_shaders()
 
     const GLchar *adapter[1];
 
-    adapter[0] = vertex_shader_code;
+    adapter[0] = read_shader_code("./vertex_shader_code.glsl");
     glShaderSource(vertex_shader_id, 1, adapter, 0);
+    free((void *)adapter[0]);
 
-    adapter[0] = fragment_shader_code;
+    adapter[0] = read_shader_code("./fragment_shader_code.glsl");
     glShaderSource(fragment_shader_id, 1, adapter, 0);
+    free((void *)adapter[0]);
 
     glCompileShader(vertex_shader_id);
     glCompileShader(fragment_shader_id);

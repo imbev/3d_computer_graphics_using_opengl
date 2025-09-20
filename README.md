@@ -20,3 +20,4 @@ Licensed under the 3-Clause BSD License
 - Vertex Attributes Triangle Interpolation
 - Get GLSL Compiler Error
 - GLSL Linker Errors
+- OpenGL Writing GLSL Shaders in Text Files vs String Literals

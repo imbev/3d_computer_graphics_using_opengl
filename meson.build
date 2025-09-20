@@ -14,6 +14,10 @@ sources = [
     'src/me_gl_window.c'
 ]
 
+fs = import('fs')
+fs.copyfile('shaders/fragment_shader_code.glsl')
+fs.copyfile('shaders/vertex_shader_code.glsl')
+
 executable(
     'main',
     sources,
