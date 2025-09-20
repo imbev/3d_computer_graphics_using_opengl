@@ -6,7 +6,7 @@ Licensed under the 3-Clause BSD License
 
 ## Differences
 - Windows -> Linux
-- MSBuild -> GNU Make
+- MSBuild -> Meson
 - C++ -> C
 - Qt -> GLFW
 
