@@ -19,3 +19,4 @@ Licensed under the 3-Clause BSD License
 - Passing Data from Vertex to Fragment Shader
 - Vertex Attributes Triangle Interpolation
 - Get GLSL Compiler Error
+- GLSL Linker Errors
