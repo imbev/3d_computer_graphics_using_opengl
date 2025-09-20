@@ -17,3 +17,4 @@ Licensed under the 3-Clause BSD License
 - OpenGL Vertex Colors
 - OpenGL Compiling GLSL Shaders
 - Passing Data from Vertex to Fragment Shader
+- Vertex Attributes Triangle Interpolation
