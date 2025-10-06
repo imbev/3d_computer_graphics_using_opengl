@@ -5,19 +5,22 @@
 
 void send_data_to_opengl()
 {
+    const float RED_TRIANGLE_Z = +0.5f;
+    const float BLUE_TRIANGLE_Z = -0.5f;
+
     GLfloat verts[] = {
-        +0.0f, +1.0f,        //
+        -1.0f, -1.0f, RED_TRIANGLE_Z, //
         +1.0f, +0.0f, +0.0f, //
-        -1.0f, -1.0f,        //
-        +1.0f, +0.0f, +0.0f, //
-        +1.0f, -1.0f,        //
+        +0.0f, +1.0f, -1.0f, //
+        +0.0f, +0.0f, +1.0f, //
+        +1.0f, -1.0f, RED_TRIANGLE_Z, //
         +1.0f, +0.0f, +0.0f, //
 
-        -1.0f, +1.0f,        //
+        +0.0f, +1.0f,  BLUE_TRIANGLE_Z, //
         +0.0f, +0.0f, +1.0f, //
-        +0.0f, -1.0f,        //
+        +0.0f, -1.0f,  BLUE_TRIANGLE_Z, //
         +0.0f, +0.0f, +1.0f, //
-        +1.0f, +1.0f,        //
+        +1.0f, +1.0f, BLUE_TRIANGLE_Z, //
         +0.0f, +0.0f, +1.0f, //
     };
 
@@ -26,9 +29,9 @@ void send_data_to_opengl()
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);
     glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(GL_FLOAT) * 5, 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GL_FLOAT) * 6, 0);
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(GL_FLOAT) * 5, (char *)(sizeof(GL_FLOAT) * 2));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(GL_FLOAT) * 6, (char *)(sizeof(GL_FLOAT) * 3));
 
     GLushort indices[] = {
         0, 1, 2, //
@@ -142,13 +145,14 @@ void install_shaders()
 void me_gl_window_init_gl()
 {
     glewInit();
+    glEnable(GL_DEPTH_TEST);
     send_data_to_opengl();
     install_shaders();
 }
 
 void me_gl_window_paint_gl(GLFWwindow *window)
 {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT);
 
     int width;
     int height;
